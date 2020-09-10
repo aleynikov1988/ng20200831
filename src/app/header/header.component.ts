@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,8 @@ export class HeaderComponent implements OnInit {
     @Input()
     public title!: string;
 
-    constructor() { }
+    @Input()
+    public drawer: MatDrawer;
 
     ngOnInit(): void {
     }

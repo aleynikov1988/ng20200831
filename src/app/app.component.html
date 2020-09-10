@@ -1,20 +1,12 @@
-<app-header [title]="title"></app-header>
-<app-side-menu></app-side-menu>
-
-
-
-
-
-
-<!-- <span>процесс интерполяции</span>
-<h1>{{title}}</h1>
-<h2>{{'My salary is ' + getSalary() + '$'}}</h2>
-<h3>{{user.name}}</h3>
-
-<span>связывание</span>
-<img [src]="imgSrc" [style.width.%]="imgWidth">
-<div [innerHTML]="content" #content></div>
-
-<span>обратное связывание</span>
-<button (click)="click(content, $event)">Ooo</button>
-<input type="text" #input (input)="search(input.value)"> -->
+<app-header [title]="title" [drawer]="drawer"></app-header>
+<app-side-menu (sideNavControl)="sideNavControl($event)">
+    <div class="menu">
+        <div>Menu 1</div>
+        <div>Menu 2</div>
+    </div>
+    <div>hello world</div>
+    <button (click)="clickMe()">click Me</button>
+    <ng-template #content>
+        <div>custom content</div>
+    </ng-template>
+</app-side-menu>
