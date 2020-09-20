@@ -7,6 +7,17 @@
     <div>hello world</div>
     <button (click)="clickMe()">click Me</button>
     <ng-template #content>
-        <div>custom content</div>
+        <mat-form-field appearance="legacy">
+            <mat-label>Search products...</mat-label>
+            <input matInput #productSearch (input)="search(productSearch.value)">
+        </mat-form-field>
+        <mat-grid-list cols="4" rowHeight="500" *ngIf="products; else loader">
+            <mat-grid-tile *ngFor="let product of products | productsFilter: searchText; index as i">
+                <app-product [product]="product"></app-product>
+            </mat-grid-tile>
+        </mat-grid-list>
     </ng-template>
 </app-side-menu>
+<ng-template #loader>
+    <mat-spinner></mat-spinner>
+</ng-template>
