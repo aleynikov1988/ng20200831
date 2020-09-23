@@ -11,8 +11,9 @@
             <mat-label>Search products...</mat-label>
             <input matInput #productSearch (input)="search(productSearch.value)">
         </mat-form-field>
+        <mat-checkbox (change)="toggleOnlyFavourites($event)">Only favorites</mat-checkbox>
         <mat-grid-list cols="4" rowHeight="500" *ngIf="products; else loader">
-            <mat-grid-tile *ngFor="let product of products | productsFilter: searchText; index as i">
+            <mat-grid-tile *ngFor="let product of products | productsFilter: searchText: onlyFavourites; index as i">
                 <app-product [product]="product"></app-product>
             </mat-grid-tile>
         </mat-grid-list>

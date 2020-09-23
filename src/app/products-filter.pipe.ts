@@ -6,12 +6,17 @@ import { IProduct } from './data';
   name: 'productsFilter'
 })
 export class ProductsFilterPipe implements PipeTransform {
-    public transform(products: IProduct[], searchText: string): IProduct[] {
+    public transform(products: IProduct[], searchText: string, onlyFavourites: boolean = false): IProduct[] {
         if (searchText.length > 1) {
-            return products.filter((p: IProduct) => {
+            products = products.filter((p: IProduct) => {
                 return `${p.title} ${p.price}`.toLowerCase().includes(searchText.toLowerCase());
             });
         }
+
+        if (onlyFavourites) {
+            products = products.filter((p: IProduct) => p.isFavorite);
+        }
+
         return products;
     }
 }

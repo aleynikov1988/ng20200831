@@ -1,8 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { IProduct, products$} from './data';
-import { Subscription } from 'rxjs';
-import { MatCheckbox } from '@angular/material/checkbox';
+import { Observable, Subscription } from 'rxjs';
+import { pluck } from 'rxjs/operators';
+import { MatCheckboxChange } from '@angular/material/checkbox';
+
 
 @Component({
   selector: 'app-root',
@@ -15,7 +17,9 @@ export class AppComponent implements OnInit, OnDestroy {
     public searchText = "";
     public products: IProduct[];
     public subscriptions: Subscription[] = [];
-    public onlyFavourites: boolean;
+    public onlyFavourites: boolean = false;
+    public products$: Observable<IProduct[]> = products$
+        .pipe(pluck('products'));
 
     public ngOnInit() {
         const subscribe = products$.subscribe((p) => {
@@ -40,5 +44,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
     public search(text: string) {
         this.searchText = text;
+    }
+
+    public toggleOnlyFavourites(event: MatCheckboxChange): void {
+        this.onlyFavourites = event.checked;
     }
 }

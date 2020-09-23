@@ -1,0 +1,6 @@
+<div *appExchangeRates="let rate from rates autoplay 'off'; controller as ctrl" appHidden>
+    <button mat-button (click)="ctrl.prev()">prev</button>
+    <span>{{rate.val | currency: rate.currency: 'symbol-narrow'}}</span>
+    <button mat-button (click)="ctrl.next()">next</button>
+</div>
+

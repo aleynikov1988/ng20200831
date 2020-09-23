@@ -9,6 +9,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatFormFieldModule } from'@angular/material/form-field';
 import { MatInputModule } from'@angular/material/input';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { MatInputModule } from'@angular/material/input';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    FlexLayoutModule
   ]
 })
 export class SharedModule { }
