@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { IProduct, products$} from './data';
 import { Observable, Subscription } from 'rxjs';
-import { pluck } from 'rxjs/operators';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { ProductsService } from './products.service';
 
 
 @Component({
@@ -12,14 +12,18 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
-    public title = "Book Market";
+    public title = 'Book Market';
     public drawer: MatDrawer;
-    public searchText = "";
-    public products: IProduct[];
+    public searchText = '';
     public subscriptions: Subscription[] = [];
     public onlyFavourites: boolean = false;
-    public products$: Observable<IProduct[]> = products$
-        .pipe(pluck('products'));
+    public products$: Observable<IProduct[]> = this.productsService.getProducts();
+    public products: IProduct[];
+
+    public constructor(
+         @Inject(ProductsService) private productsService: ProductsService
+        // private productsService: ProductsService
+    ) {}
 
     public ngOnInit() {
         const subscribe = products$.subscribe((p) => {
@@ -39,7 +43,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     public clickMe() {
-        console.log("click Me");
+        console.log('click Me');
     }
 
     public search(text: string) {
