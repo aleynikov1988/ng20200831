@@ -14,6 +14,7 @@ import { ProductsService } from './products.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { CustomInterceptorService } from './custom-interceptor.service';
+import { ModalModule } from './modal/modal.module';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { CustomInterceptorService } from './custom-interceptor.service';
         BrowserModule,
         BrowserAnimationsModule,
         SharedModule,
-        HttpClientModule
+        HttpClientModule,
+        ModalModule.forRoot()
     ],
     providers: [
         {

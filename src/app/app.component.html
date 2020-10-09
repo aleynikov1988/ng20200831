@@ -3,22 +3,29 @@
     <div class="menu">
         <div>Menu 1</div>
         <div>Menu 2</div>
+        <button (click)="clickMe()">click Me</button>
     </div>
-    <div>hello world</div>
-    <button (click)="clickMe()">click Me</button>
-    <ng-template #content>
+    <div class="actions">
         <mat-form-field appearance="legacy">
             <mat-label>Search products...</mat-label>
-            <input matInput #productSearch (input)="search(productSearch.value)">
+            <input matInput
+                (input)="search(productSearch.value)"
+                #productSearch>
+            <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
-        <mat-checkbox (change)="toggleOnlyFavourites($event)">Only favorites</mat-checkbox>
-        <mat-grid-list cols="4" rowHeight="500" *ngIf="products$ | async as products; else loader">
-            <mat-grid-tile *ngFor="let product of products | productsFilter: searchText: onlyFavourites; index as i">
-                <app-product [product]="product"></app-product>
-            </mat-grid-tile>
-        </mat-grid-list>
+        <mat-checkbox (change)="toggleOnlyFavourites($event)">Only favorites</mat-checkbox> 
+    </div>
+    <ng-template #content>
+        <div fxFlex="60" fxFlexOffset="20">
+            <mat-grid-list cols="3" gutterSize="5" *ngIf="products$ | async as products; else loader">
+                <mat-grid-tile *ngFor="let product of products | productsFilter: searchText: onlyFavourites; index as i">
+                    <app-product [product]="product"></app-product>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
     </ng-template>
 </app-side-menu>
 <ng-template #loader>
     <mat-spinner id="loader"></mat-spinner>
 </ng-template>
+<!-- <app-modal></app-modal> -->

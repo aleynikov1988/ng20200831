@@ -13,18 +13,18 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
-  exports: [
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatProgressSpinnerModule,
-    MatGridListModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCheckboxModule,
-    FlexLayoutModule
-  ]
+    exports: [
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule,
+        MatSidenavModule,
+        MatProgressSpinnerModule,
+        MatGridListModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCheckboxModule,
+        FlexLayoutModule
+    ]
 })
 export class SharedModule { }
